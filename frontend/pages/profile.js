@@ -7,7 +7,7 @@ import axios from 'axios'
 import withAuth from '../components/withAuth'
 import config from '../config/config'
 
-const Profile1 = ({ token }) => {
+const Profile = ({ token }) => {
 
     const [user, setUser] = useState({})
 
@@ -51,7 +51,7 @@ const Profile1 = ({ token }) => {
     )
 }
 
-export default withAuth(Profile1)
+export default withAuth(Profile)
 
 export function getServerSideProps({ req, res }) {
     return { props: { token: req.cookies.token || "" } };
