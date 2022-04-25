@@ -9,12 +9,28 @@ router.get("/accounts", async (req, res) => {
 
 router.get("/account/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(accounts);
   const response = accounts.find((item) => item.id === +id);
   if (!response) {
     res.status(404).json({ message: "accout not found" });
   }
   res.status(200).json(response);
+});
+
+router.post("/account", async (req, res) => {
+  const { name, date, description, value, type } = req.body;
+  if (!name || !date || !description || !value || !type) {
+    res.status(400).json({ message: "invalid data" });
+  }
+  const account = {
+    id: accounts.length + 1,
+    name,
+    date,
+    description,
+    value,
+    type,
+  };
+  accounts.push(account);
+  res.status(200).json(account);
 });
 
 router.delete("/account/:id", async (req, res) => {
