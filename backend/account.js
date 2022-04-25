@@ -33,6 +33,29 @@ router.post("/account", async (req, res) => {
   res.status(200).json(account);
 });
 
+router.put("/account/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, date, description, value, type } = req.body;
+  let account = accounts[+id - 1];
+  if (name) {
+    account.name = name;
+  }
+  if (date) {
+    account.date = date;
+  }
+  if (description) {
+    account.description = description;
+  }
+  if (value) {
+    account.value = value;
+  }
+  if (type) {
+    account.type = type;
+  }
+
+  res.status(200).json(account);
+});
+
 router.delete("/account/:id", async (req, res) => {
   const { id } = req.params;
   const findAccount = accounts.find((item) => item.id === +id);
