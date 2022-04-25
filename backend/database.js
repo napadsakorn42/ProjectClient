@@ -50,7 +50,7 @@ let accounts = {
       type: "add",
     },
     {
-      id: 1,
+      id: 2,
       name: "จ่ายค่าเช่าบ้าน",
       date: "25/04/2022",
       description: "",
