@@ -1,16 +1,15 @@
-import Layout from '../components/layout'
+import MainLayout from '../components/layout'
 import Head from 'next/head'
 import config from '../config/config'
 import styles from '../styles/Home.module.css'
 import Navbar from '../components/navbar'
 
 const GetConfig = () => {
-    return (<Layout>
+    return (<MainLayout>
         <Head>
             <title>Get Config</title>
         </Head>
         <div className={styles.container}>
-            <Navbar />
             <h2> Get Configuration from ../config/config.js </h2>
             <b>Config: </b> {JSON.stringify(config)}
             <ul>
@@ -19,7 +18,7 @@ const GetConfig = () => {
             </ul>
         </div>
 
-    </Layout>)
+    </MainLayout>)
 }
 
 export default GetConfig

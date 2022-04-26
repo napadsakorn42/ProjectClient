@@ -3,8 +3,25 @@ const router = require("express").Router(),
 
 let accounts = db.accounts.account;
 
-router.get("/accounts", async (req, res) => {
-  res.status(200).json(accounts);
+router.get("/accounts/:skip/:take", async (req, res) => {
+  const { skip, take } = req.params;
+  const limit = take > accounts.length ? accounts.length : take;
+  const response = [];
+  for (let index = +skip; index < limit; index++) {
+    response.push(accounts[index]);
+  }
+  let revenue = 0;
+  let expenses = 0;
+  for (const account of accounts) {
+    if (account.type === "add") {
+      revenue += account.value;
+    } else {
+      expenses += account.value;
+    }
+  }
+  res
+    .status(200)
+    .json({ items: response, totalItems: accounts.length, revenue, expenses });
 });
 
 router.get("/account/:id", async (req, res) => {
@@ -17,14 +34,14 @@ router.get("/account/:id", async (req, res) => {
 });
 
 router.post("/account", async (req, res) => {
-  const { name, date, description, value, type } = req.body;
-  if (!name || !date || !description || !value || !type) {
+  const { name, transactionDate, description, value, type } = req.body;
+  if (!name || !transactionDate || !description || !value || !type) {
     res.status(400).json({ message: "invalid data" });
   }
   const account = {
     id: accounts.length + 1,
     name,
-    date,
+    transactionDate,
     description,
     value,
     type,
@@ -35,19 +52,19 @@ router.post("/account", async (req, res) => {
 
 router.put("/account/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, date, description, value, type } = req.body;
+  const { name, transactionDate, description, value, type } = req.body;
   let account = accounts[+id - 1];
   if (name) {
     account.name = name;
   }
-  if (date) {
-    account.date = date;
+  if (transactionDate) {
+    account.transactionDate = transactionDate;
   }
   if (description) {
     account.description = description;
   }
   if (value) {
-    account.value = value;
+    account.value = +value;
   }
   if (type) {
     account.type = type;

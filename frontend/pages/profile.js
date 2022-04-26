@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../components/layout'
+import MainLayout from '../components/layout'
 import Navbar from '../components/navbar'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
@@ -31,12 +31,11 @@ const Profile = ({ token }) => {
     }
  
     return (
-        <Layout>
+        <MainLayout>
             <Head>
                 <title>User profile</title>
             </Head>
             <div className={styles.container}>
-                <Navbar />
                 <h1>User profile</h1>
                 <div>
                     <b>Token:</b> {token.substring(0, 15)}... <br /><br />
@@ -47,7 +46,7 @@ const Profile = ({ token }) => {
                     {JSON.stringify(user)}
                 </div>
             </div>
-        </Layout>
+        </MainLayout>
     )
 }
 

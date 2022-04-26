@@ -44,7 +44,7 @@ let accounts = {
     {
       id: 1,
       name: "เงินเดือนออก",
-      date: "25/04/2022",
+      transactionDate: "2022-04-26",
       description: "",
       value: 30000,
       type: "add",
@@ -52,7 +52,7 @@ let accounts = {
     {
       id: 2,
       name: "จ่ายค่าเช่าบ้าน",
-      date: "25/04/2022",
+      transactionDate: "2022-04-26",
       description: "",
       value: 4000,
       type: "subtract",
