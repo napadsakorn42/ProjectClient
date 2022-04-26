@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Layout, Drawer, Menu } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
-const { Header, Content } = Layout;
+import config from "../config/config";
+import axios from "axios";
 
 export default function MainLayout({ children }) {
+  const { Header, Content } = Layout;
   const router = useRouter();
   const [visible, setVisible] = useState(false);
 
@@ -17,12 +19,10 @@ export default function MainLayout({ children }) {
   };
 
   const logout = async () => {
-    const token = req.cookies.token || "";
-    console.log("remove token: ", token);
-    let result = await axios.get(`${config.URL}/logout`, {
+    await axios.get(`${config.URL}/logout`, {
       withCredentials: true,
     });
-    setStatus("Logout successful");
+    router.push("/login");
   };
 
   return (

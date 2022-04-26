@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config/config";
 import moment from "moment";
+import withAuth from "../../components/withAuth";
 
-export default function Account({ token }) {
+const Account = ({ token }) => {
   const router = useRouter();
   const { id } = router.query;
   const [account, setAccount] = useState({
@@ -195,7 +196,9 @@ export default function Account({ token }) {
       </Col>
     </Row>
   );
-}
+};
+
+export default withAuth(Account);
 
 export function getServerSideProps({ req, res }) {
   return { props: { token: req.cookies.token || "" } };

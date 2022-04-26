@@ -12,8 +12,9 @@ import {
 import { useState } from "react";
 import axios from "axios";
 import config from "../../config/config";
+import withAuth from "../../components/withAuth";
 
-export default function CreateAccount({ token }) {
+const CreateAccount = ({ token }) => {
   const router = useRouter();
   const [account, setAccount] = useState({
     id: undefined,
@@ -186,7 +187,8 @@ export default function CreateAccount({ token }) {
       </Col>
     </Row>
   );
-}
+};
+export default withAuth(CreateAccount);
 
 export function getServerSideProps({ req, res }) {
   return { props: { token: req.cookies.token || "" } };

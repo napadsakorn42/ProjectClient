@@ -71,17 +71,19 @@ export default function Register({ token }) {
   return (
     <MainLayout>
       <Head>
-        <title>Register</title>
+        <title className="text-green-400">Register</title>
       </Head>
       <div className={styles.container}>
-        <h1>Register</h1>
+        <h1 className="text-green-400">Register</h1>
         <br />
         Status: {status}
         <br />
         <br />
         <div className={styles.content}>{registerForm()}</div>
         <div>
-          <button onClick={register}>Register</button>
+          <button onClick={register} className="text-green-400">
+            Register
+          </button>
         </div>
       </div>
     </MainLayout>

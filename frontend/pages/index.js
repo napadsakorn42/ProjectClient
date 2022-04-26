@@ -4,8 +4,9 @@ import { Row, Col, Table, Typography, Button } from "antd";
 import axios from "axios";
 import config from "../config/config";
 import { useRouter } from "next/router";
+import withAuth from "../components/withAuth";
 
-export default function Home({ token }) {
+const Home = ({ token }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [accounts, setAccounts] = useState([]);
@@ -169,7 +170,9 @@ export default function Home({ token }) {
       </Row>
     </MainLayout>
   );
-}
+};
+
+export default withAuth(Home);
 
 export function getServerSideProps({ req, res }) {
   return { props: { token: req.cookies.token || "" } };

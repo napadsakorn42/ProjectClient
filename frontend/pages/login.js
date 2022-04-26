@@ -61,13 +61,13 @@ export default function Login({ token }) {
         <title>Login</title>
       </Head>
       <div className={styles.container}>
-        <h1>Login</h1>
+        <h1 className="text-blue-800">Login</h1>
         <br />
-        <div>Status: {status}</div>
+        <div className="text-blue-800">Status: {status}</div>
         <br />
         {loginForm()}
         <div>
-          <button onClick={login}>Login</button>
+          <button onClick={login} className="text-blue-800">Login</button>
         </div>
       </div>
     </MainLayout>
